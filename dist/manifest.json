@@ -1,0 +1,9 @@
+{
+  "name": "Export to JSON",
+  "id": "export-to-json-plugin",
+  "api": "1.0.0",
+  "editorType": ["figma", "figjam"],
+  "main": "code.js",
+  "ui": "index.html"
+
+}

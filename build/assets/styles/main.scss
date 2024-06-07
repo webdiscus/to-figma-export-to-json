@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0px;
+    background: #2C2C2C;
+    color: white;
+    height: 100%;
+}
+
+button {
+    color: #ffffff;
+    background-color: #0c8ce9;
+    font-size: 19px;
+    border: unset;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer
+}
+
+.to-figma-export-to-json__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translate(0, -50%);
+}

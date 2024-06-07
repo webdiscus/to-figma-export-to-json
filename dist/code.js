@@ -1,0 +1,1 @@
+figma.showUI(__html__),figma.ui.onmessage=async n=>{if("export-to-json"===n.type){const n=figma.root.children.map((function n(e){const i={id:e.id,name:e.name,type:e.type,children:[]};if("children"in e)for(const t of e.children)i.children.push(n(t));return i}));figma.ui.postMessage({type:"exported-json",data:JSON.stringify(n,null,2)})}};
