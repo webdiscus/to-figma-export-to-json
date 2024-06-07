@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0px;
+            background: #2C2C2C;
+            color: white;
+            height: 100%;
+        }
+
+        button {
+           	color: #ffffff;
+			background-color: #0c8ce9;
+			font-size: 19px;
+            border: unset;
+			border-radius: 5px;
+			padding: 10px 15px;
+			cursor: pointer
+        }
+        .to-figma-export-to-json__content-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: fit-content;
+            margin: auto;
+            position: relative;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+    </style>
+</head>
+
+<body>
+   <div class="to-figma-export-to-json__content-wrapper">
+    <button id="export">Export</button>
+   </div>
+    <script>
+        const exportButton = document.getElementById('export');
+        exportButton.onclick = () => {
+            parent.postMessage({ pluginMessage: { type: 'export-to-json' } }, '*');
+        };
+
+        onmessage = (event) => {
+            if (event.data.pluginMessage.type === 'exported-json') {
+                const blob = new Blob([event.data.pluginMessage.data], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'design.json'; // Default file name
+                document.body.appendChild(a); // Append to body
+                a.click();
+                a.remove(); // Remove after click
+            }
+        };
+    </script>
+</body>
+
+</html>
