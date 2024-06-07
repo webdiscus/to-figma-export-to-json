@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlInlineScriptWebpackPlugin = require('html-inline-script-webpack-plugin');
 
 module.exports = {
   entry: './build/assets/js/ui.js',
@@ -43,9 +43,7 @@ module.exports = {
       inject: 'body'
     }),
     new HtmlInlineCSSWebpackPlugin(),
-    new ScriptExtHtmlWebpackPlugin({
-      inline: 'bundle.js' // This will inline the bundle.js script
-    }),
+    new HtmlInlineScriptWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'build/manifest.json', to: 'manifest.json' },
