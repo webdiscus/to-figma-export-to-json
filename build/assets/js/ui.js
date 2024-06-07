@@ -1,6 +1,3 @@
-// Import styles (this will be bundled by Webpack)
-import '../styles/main.scss';
-
 document.addEventListener('DOMContentLoaded', (event) => {
     const exportButton = document.getElementById('export');
     exportButton.onclick = () => {

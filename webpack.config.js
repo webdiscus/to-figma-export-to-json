@@ -1,14 +1,9 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlInlineScriptWebpackPlugin = require('html-inline-script-webpack-plugin');
 
 module.exports = {
-  entry: './build/assets/js/ui.js',
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: ''
   },
@@ -17,7 +12,6 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -35,15 +29,23 @@ module.exports = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'styles.css'
+    new HtmlBundlerPlugin({
+      // define pages (key is output filename w/o `.html`)
+      entry: {
+        index: 'build/ui.html', // => dist/index.html
+      },
+      js: {
+        // JS output filename, used if `inline` option is false (defaults)
+        filename: 'js/[name].[contenthash:8].js',
+        inline: true, // inlines JS into HTML
+      },
+      css: {
+        // CSS output filename, used if `inline` option is false (defaults)
+        filename: 'css/[name].[contenthash:8].css',
+        inline: true, // inlines CSS into HTML
+      },
+      minify: true,
     }),
-    new HtmlWebpackPlugin({
-      template: 'build/ui.html',
-      inject: 'body'
-    }),
-    new HtmlInlineCSSWebpackPlugin(),
-    new HtmlInlineScriptWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'build/manifest.json', to: 'manifest.json' },
