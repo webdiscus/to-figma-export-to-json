@@ -1,28 +1,27 @@
-body {
-    font-family: Arial, sans-serif;
+.to-figma-export {
     margin: 0;
-    padding: 0px;
+    padding: 0;
     background: #2C2C2C;
     color: white;
     height: 100%;
-}
+    font-family: monospace;
 
-button {
-    color: #ffffff;
-    background-color: #0c8ce9;
-    font-size: 19px;
-    border: unset;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer
-}
+    &__inner {
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+    }
 
-.to-figma-export-to-json__content-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    margin: auto;
-    position: relative;
-    top: 50%;
-    transform: translate(0, -50%);
+    &__button {
+        color: #ffffff;
+        background-color: #0c8ce9;
+        font-size: 19px;
+        border: unset;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
 }
